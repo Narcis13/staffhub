@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client { 
+  provider = "prisma-client-js" 
+  binaryTargets = ["native", "debian-openssl-3.0.x"] 
+  }
+  
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model users {
+  id             Int              @id @default(autoincrement())
+  name          String            @unique(map: "name") @db.VarChar(255)
+  password       String           @db.VarChar(255)
+  avatar         String?          @db.VarChar(1000)
+  permissions    String?          @db.VarChar(4000)
+  first_name     String           @db.VarChar(255)
+  last_name      String           @db.VarChar(255)
+  role           Role             @default(GENERAL)
+  is_active      Boolean          @default(true)
+  last_login     DateTime?        @db.DateTime(0)
+  created_at     DateTime         @default(now()) @db.DateTime(0)
+  deleted_at     DateTime?        @db.DateTime(0)
+  updated_at     DateTime?        @updatedAt
+ 
+}
+
+
+
+enum Role {
+  ADMIN
+  GENERAL
+  CASIER
+
+}
+
+model institutie {
+  id           Int       @id @default(autoincrement())
+  denumire   String?    @db.VarChar(255)
+  adresa   String?    @db.VarChar(255)
+  cui   String?    @db.VarChar(255)
+  reprezentant   String?    @db.VarChar(255)
+  observatii   String?    @db.VarChar(255)
+ 
+}
