@@ -38,7 +38,7 @@
               <q-avatar size="48px">
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png">
               </q-avatar>
-              <usermenu />
+        
               <q-tooltip>Account</q-tooltip>
             </q-btn>
           </div>
