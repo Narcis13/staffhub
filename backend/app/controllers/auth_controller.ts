@@ -123,12 +123,12 @@ export default class AuthController {
       await db.query().from('users')
         .where('id', user.id)
         .update({ 
-          last_login: DateTime.now().toSQL(),
-          updated_at: DateTime.now().toSQL()
+          last_login: DateTime.now().toUTC().toFormat('yyyy-MM-dd HH:mm:ss'),
+          updated_at: DateTime.now().toUTC().toFormat('yyyy-MM-dd HH:mm:ss')
         })
 
       // Return user data (excluding sensitive information)
-      console.log(user)
+     // console.log(user)
       return response.status(200).json({
         id: user.id,
         name: user.name,
