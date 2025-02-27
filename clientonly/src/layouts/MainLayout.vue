@@ -24,6 +24,7 @@
       show-if-above
       bordered
     >
+    <DrawerTabs />
       <q-list>
         <q-item-label
           header
@@ -48,7 +49,7 @@
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
-
+import DrawerTabs from 'components/DrawerTabs.vue'
 const linksList = [
   {
     title: 'Docs',
