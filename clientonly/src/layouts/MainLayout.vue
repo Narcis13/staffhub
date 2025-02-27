@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+        StaffHUB
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div> v 28.02.2025</div>
       </q-toolbar>
     </q-header>
 
