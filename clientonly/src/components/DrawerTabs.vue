@@ -1,6 +1,6 @@
 <template>
   <div class="drawer-tabs q-pb-md">
-    <!-- <q-tabs
+ <!-- <q-tabs
       v-model="activeTab"
       dense
       class="text-grey"
@@ -11,9 +11,9 @@
     >
       <q-tab name="tab1" label="Login" />
       <q-tab name="tab2" label="Profil" />
-    </q-tabs> -->
+    </q-tabs> 
 
-    <q-separator />
+    <q-separator /> -->
 
     <q-tab-panels v-model="activeTab" animated>
       <q-tab-panel name="tab1">
@@ -53,7 +53,7 @@
         <!-- User Info Card -->
         <q-card flat bordered class="q-pa-md">
           <q-card-section>
-            <div class="text-h6 q-mb-xs">Informatii Utilizator</div>
+            <div class="text-h6 q-mb-xs">Informatii Utilizator </div>
             <q-separator />
           </q-card-section>
           
@@ -89,11 +89,15 @@
 
 <script setup>
 import { ref } from 'vue';
-
+import { useQuasar } from 'quasar'
+import { useUtilizatorStore } from 'stores/useUtilizatorStores';
+import { host } from '../config/api';
 const activeTab = ref('tab1');
 const username = ref('');
 const password = ref('');
-
+const utilizatorStore = useUtilizatorStore();
+const $q = useQuasar()
+console.log('host', host)
 // Mock user information (replace with actual user data in your app)
 const userInfo = ref({
   name: 'John Doe',
@@ -104,15 +108,16 @@ const userInfo = ref({
 function onSubmit() {
   // Handle login logic here
   console.log('Login attempt with:', username.value, password.value);
+
   // After successful login, you might want to switch to tab2
-  // activeTab.value = 'tab2';
+  activeTab.value = 'tab2';
 }
 
 function logout() {
   // Handle logout logic here
   console.log('Logging out');
   // After logout, you might want to switch to tab1
-  // activeTab.value = 'tab1';
+   activeTab.value = 'tab1';
 }
 </script>
 
