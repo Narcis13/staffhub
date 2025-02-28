@@ -60,7 +60,7 @@
           <q-card-section>
             <div class="q-py-sm">
               <div class="text-subtitle2">Nume utilizator</div>
-              <div>{{ userInfo.name || 'John Doe' }}</div>
+              <div>{{ utilizatorStore.utilizator.first_name+' '+utilizatorStore.utilizator.last_name || 'Neautentificat' }}</div>
             </div>
             
             <div class="q-py-sm">
@@ -92,32 +92,93 @@ import { ref } from 'vue';
 import { useQuasar } from 'quasar'
 import { useUtilizatorStore } from 'stores/useUtilizatorStores';
 import { host } from '../config/api';
+import axios from 'axios';
+
 const activeTab = ref('tab1');
 const username = ref('');
 const password = ref('');
 const utilizatorStore = useUtilizatorStore();
-const $q = useQuasar()
-console.log('host', host)
-// Mock user information (replace with actual user data in your app)
+const $q = useQuasar();
+const loading = ref(false);
+
+// User information state
 const userInfo = ref({
-  name: 'John Doe',
-  role: 'Administrator',
-  lastLogin: '2025-02-26 15:30'
+  name: '',
+  role: '',
+  lastLogin: '',
+  first_name: '',
+  last_name: '',
+  avatar: null
 });
 
-function onSubmit() {
-  // Handle login logic here
-  console.log('Login attempt with:', username.value, password.value);
+async function onSubmit() {
+  try {
+    loading.value = true;
+    const response = await axios.post(`${host}/api/auth/login`, {
+      name: username.value,
+      password: password.value
+    });
+   // console.log(response);
+    // Update user info with response data
+    userInfo.value = {
+      name: `${response.data.first_name} ${response.data.last_name}`,
+      role: response.data.role,
+      lastLogin: new Date().toLocaleString(),
+      avatar: response.data.avatar
+    };
 
-  // After successful login, you might want to switch to tab2
-  activeTab.value = 'tab2';
+    // Store user data in the utilizator store
+    utilizatorStore.autentificare(response.data);
+
+    // Show success notification
+    $q.notify({
+      type: 'positive',
+      message: 'Autentificare reușită!',
+      position: 'top'
+    });
+
+    // Switch to profile tab
+    activeTab.value = 'tab2';
+
+    // Clear form
+    username.value = '';
+    password.value = '';
+  } catch (error) {
+    // Handle different error scenarios
+    const errorMessage = error.response?.data?.message || 'Eroare la autentificare';
+    $q.notify({
+      type: 'negative',
+      message: errorMessage,
+      position: 'top'
+    });
+  } finally {
+    loading.value = false;
+  }
 }
 
 function logout() {
-  // Handle logout logic here
-  console.log('Logging out');
-  // After logout, you might want to switch to tab1
-   activeTab.value = 'tab1';
+  // Clear user info
+  userInfo.value = {
+    name: '',
+    role: '',
+    lastLogin: '',
+    first_name: '',
+    last_name: '',
+    avatar: null
+  };
+
+  // Clear store
+  //utilizatorStore.clearUser();
+
+  // Show notification
+  $q.notify({
+    type: 'info',
+    message: 'V-ați deconectat cu succes',
+    position: 'top'
+  });
+
+  // Switch to login tab
+  activeTab.value = 'tab1';
 }
 </script>
 

@@ -108,14 +108,14 @@ export default class AuthController {
       // Check if user exists
       if (!user) {
         return response.status(401).json({
-          message: 'Invalid credentials'
+          message: 'Credentiale invalide'
         })
       }
 
       // Verify password
       if (!this.verifyPassword(body.password, user.password)) {
         return response.status(401).json({
-          message: 'Invalid credentials'
+          message: 'Credentiale invalide'
         })
       }
 

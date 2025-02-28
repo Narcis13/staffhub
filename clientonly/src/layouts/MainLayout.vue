@@ -25,7 +25,7 @@
       bordered
     >
     <DrawerTabs />
-      <q-list>
+      <q-list v-if="utilizatorStore.eAutentificat">
         <q-item-label
           header
         >
@@ -50,6 +50,8 @@
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import DrawerTabs from 'components/DrawerTabs.vue'
+import { useUtilizatorStore } from 'stores/useUtilizatorStores';
+const utilizatorStore = useUtilizatorStore();
 const linksList = [
   {
     title: 'Docs',
