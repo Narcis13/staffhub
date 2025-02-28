@@ -168,7 +168,7 @@ function logout() {
   };
 
   // Clear store
-  //utilizatorStore.clearUser();
+  utilizatorStore.logout();
 
   // Show notification
   $q.notify({
