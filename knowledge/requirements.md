@@ -17,7 +17,7 @@
 - Feature 4: Raport cu situatia incasarilor filtrate dupa diferite criterii (interval timp, categorie, etc)
 ## User Flow
 Utilizatorul se logheaza cu credentialele sale si daca are rolul de CASIER vede un meniu de unde poate alege sa actualizeze oferta de servicii (operatii CRUD pe categorii si in cadrul categoriilor pe fiecare serviciu oferit). De preferat ar fi sa i se prezinta o structura grupata ierarhic 
-de categorii si in cadrul lor serviciile aferente pe care le poate edita. Apoi daca se prezinta un pacient sa completeze numele pacientului , localitatea , sa primeasca automat un numar nou de chitanta , sa aleaga dintr-un fel de lista/data table/ panels/ serviciile care trebuiesc incasate si sa genereze chitanta, urmind a o valida final atunci cind a incasat efectiv banii. Tot casierul poate genera un raport cu toate incasarile dintr-o anumta perioada si/sau alte rapoarte.
+de categorii si in cadrul lor serviciile aferente pe care le poate edita. Apoi daca se prezinta un pacient sa completeze numele pacientului , localitatea , sa primeasca automat un numar nou de chitanta , sa aleaga dintr-un fel de lista/data table/ panels/ serviciile care trebuiesc incasate si sa genereze chitanta, urmind a o valida final atunci cind a incasat efectiv banii.node ace  Tot casierul poate genera un raport cu toate incasarile dintr-o anumta perioada si/sau alte rapoarte.
 
 ## Design Preferences
 - Visual style: Corporate

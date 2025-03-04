@@ -25,6 +25,7 @@
       bordered
     >
     <DrawerTabs />
+    <Meniu v-if="utilizatorStore.eAutentificat"/>
       <q-list v-if="utilizatorStore.eAutentificat">
         <q-item-label
           header
@@ -49,6 +50,7 @@
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import Meniu from 'components/Meniu.vue'
 import DrawerTabs from 'components/DrawerTabs.vue'
 import { useUtilizatorStore } from 'stores/useUtilizatorStores';
 const utilizatorStore = useUtilizatorStore();
