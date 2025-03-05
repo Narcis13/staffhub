@@ -29,8 +29,3 @@ de categorii si in cadrul lor serviciile aferente pe care le poate edita. Apoi d
 - Minimalista, nu va fi scalata foarte mult dar posibil sa fie dezvoltata si integrata in alte sisteme software ale spitalului
 
 
-Database schema design
-API endpoint architecture
-UI/UX wireframes and component hierarchy
-System architecture diagram
-Implementation roadmap
